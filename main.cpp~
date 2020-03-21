@@ -1,0 +1,55 @@
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+void find_diff(int *a, int *b, int *result);
+
+int main() {
+  int arr1[] = { 1, 2, 3, 4, 5 };
+  int arr2[] = { 4, 5, 6, 7, 8 };
+
+  int *result;
+
+  find_diff(arr1, arr2, result);
+
+  int size = sizeof(result) / sizeof(int);
+
+  for (int i = 0; i < size; i++) {
+    cout << result[i] << " ";
+  }
+
+  cout << endl;
+
+  return 0;
+}
+
+void find_diff(int a[], int b[], int *result) {
+  int a_size = sizeof(a) / sizeof(int);
+  int b_size = sizeof(b) / sizeof(int);
+
+  set<int> final_set;
+
+  for (int i = 0; i < a_size; i++) {
+    final_set.insert(a[i]);
+  }
+
+  for (int i = 0; i < b_size; i++) {
+    if (final_set.find(b[i]) == final_set.end()) {
+      final_set.insert(b[i]);
+    } else {
+      final_set.erase(b[i]);
+    }
+  }
+
+  set<int>::iterator it = final_set.begin();
+
+  result = new int[final_set.size()];
+
+  int i = 0;
+  while (it != final_set.end()) {
+    cout << *it
+
+    result[i++] = *it++;
+  }
+}
